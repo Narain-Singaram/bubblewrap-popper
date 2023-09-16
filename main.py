@@ -11,7 +11,7 @@ SCREEN_HEIGHT = 600
 BUBBLE_SIZE = 50
 BACKGROUND_COLOR = (136, 187, 255)  # Light blue
 POP_SOUND = pygame.mixer.Sound('pop.wav')
-GAME_FONT = pygame.font.Font(None, 36)
+GAME_FONT = pygame.font.Font('ArchitectsDaughter-Regular.ttf', 36)
 
 # Difficulty settings
 DIFFICULTY_SETTINGS = {
@@ -45,8 +45,8 @@ def create_bubble():
 
 # Function to display the title screen and select difficulty
 def title_screen():
-    title_font = pygame.font.Font(None, 80)
-    instruction_font = pygame.font.Font(None, 36)
+    title_font = pygame.font.Font('ArchitectsDaughter-Regular.ttf', 45)
+    instruction_font = pygame.font.Font('ArchitectsDaughter-Regular.ttf', 20)
 
     title_text = title_font.render("Bubble Wrap Popping Game", True, (0, 0, 0))
     easy_text = instruction_font.render("Press 'E' for Easy", True, (0, 0, 0))
@@ -205,10 +205,21 @@ while True:
 
     # Game over screen
     while True:
+        # Inside your game loop
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
+        # Your existing game logic goes here
+
+        # Update the display and maintain the music
+        pygame.display.flip()
+        pygame.mixer.music.set_endevent(pygame.constants.USEREVENT)
+        pygame.event.set_allowed(pygame.constants.USEREVENT)
+        pygame.event.set_allowed(pygame.QUIT)
+        pygame.event.clear()
+        clock.tick(60)  # 60 frames per second
 
         if retry_button_pressed:
             break
