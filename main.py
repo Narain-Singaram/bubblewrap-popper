@@ -21,8 +21,12 @@ DIFFICULTY_SETTINGS = {
     'extreme': {'num_bubbles': 40, 'bubble_speed': 8, 'game_duration': 90}
 }
 
-# Bubble colors
-BUBBLE_COLORS = [(255, 0, 0), (0, 255, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255)]
+# Function to generate a random RGB color tuple
+def generate_random_color():
+    return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+# Generate a list of 10 random RGB colors
+BUBBLE_COLORS = [generate_random_color() for _ in range(10)]
 
 # Create the screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
